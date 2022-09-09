@@ -1,19 +1,18 @@
-from random import randint
+import sorteio
+import titulos
+import interacao_usuario
 
-numero_sorteado = randint(1, 10)
+numero_sorteado = sorteio.numero_sorteado()
 numero_de_tentativas = 0
 tentativas_usuario = []
 
-print("Bem vindo ao jogo da adivinhação!!!")
+titulos.titulo_boas_vindas()
 
-print("""Níveis de dificuldade:
-1 - Fácil - 8 tentativas
-2 - Médio - 5 tentativas
-3 - Difícil - 3 tentativas""")
+titulos.titulo_niveis()
 
-nivel_de_dificuldade = int(input("Selecione o nível de dificuldade (1, 2 ou 3): "))
+nivel_de_dificuldade = interacao_usuario.pergunta_nivel()
 
-dica = str(input("Quer dicas [SIM/NÃO] ? ")).lower().strip()[0]
+dica = interacao_usuario.ajuda()
 
 if nivel_de_dificuldade == 1:
     dificuldade = 8
@@ -33,13 +32,9 @@ else:
     dica = False
 
 while True:
-    resposta_usuario = int(input(f"{numero_de_tentativas + 1}ª tentativa: "))
+    resposta_usuario = interacao_usuario.tentativa_usuario()
 
-    if resposta_usuario == numero_sorteado:
-        print("Parabéns, você acertou o número!!!")
-        break
-
-    elif resposta_usuario != numero_sorteado:
+    if resposta_usuario != numero_sorteado:
         if resposta_usuario in tentativas_usuario:
             print("Esse número você já tentou!!!")
 
@@ -54,6 +49,10 @@ while True:
 
                 else:
                     print("O número sorteado é menor!!!")
+
+    if resposta_usuario == numero_sorteado:
+        print("Parabéns, você acertou o número!!!")
+        break
 
     if numero_de_tentativas == dificuldade:
         print(f"Número de tentativas excedido!!!")
