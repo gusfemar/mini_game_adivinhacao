@@ -14,8 +14,9 @@ nivel_de_dificuldade = interacao_usuario.pergunta_nivel()
 
 dica = interacao_usuario.ajuda()
 
+
 if nivel_de_dificuldade == 1:
-    dificuldade = 8
+    dificuldade =  8
 
 elif nivel_de_dificuldade == 2:
     dificuldade = 5
